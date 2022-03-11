@@ -99,4 +99,29 @@ public class CustomListTest {
 
     }
 
+    @Test
+    public void countCitiesTest() {
+
+        assertEquals(list.countCities(), 0);
+        list.addCity(city1);
+        assertEquals(list.countCities(), 1);
+        list.addCity(city2);
+        assertEquals(list.countCities(), 2);
+        list.delete(city1);
+        assertEquals(list.countCities(), 1);
+        list.addCity(city3);
+        assertEquals(list.countCities(), 2);
+        list.addCity(city1);
+        assertEquals(list.countCities(), 3);
+
+        list.delete(city3);
+        assertEquals(list.countCities(), 2);
+
+        list.delete(city2);
+        assertEquals(list.countCities(), 1);
+
+        list.delete(city1);
+        assertEquals(list.countCities(), 0);
+    }
+
 }
