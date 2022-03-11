@@ -18,7 +18,7 @@ public class CustomListTest {
 
     @BeforeEach
     public void createList() {
-        list = new CustomList(null, new ArrayList<City>());
+        list = new CustomList(null, new ArrayList<>());
         city1 = new City("Halifax","NS");
         city2 = new City("Edmonton","AB");
         city3 = new City("Vancouver","BC");
@@ -56,6 +56,47 @@ public class CustomListTest {
         assertTrue(list.hasCity(city1));
         assertTrue(list.hasCity(city2));
         assertTrue(list.hasCity(city3));
+    }
+
+    @Test
+    public void deleteTest() {
+
+
+        int len;
+
+        list.addCity(city1);
+        list.addCity(city2);
+        list.addCity(city3);
+
+        assertTrue(list.hasCity(city1));
+        assertTrue(list.hasCity(city2));
+        assertTrue(list.hasCity(city3));
+
+        len = list.getCount();
+        list.delete(city2);
+
+        assertTrue(list.hasCity(city1));
+        assertFalse(list.hasCity(city2));
+        assertTrue(list.hasCity(city3));
+        assertEquals(list.getCount(), len-1);
+
+        len = list.getCount();
+        list.delete(city1);
+
+        assertFalse(list.hasCity(city1));
+        assertFalse(list.hasCity(city2));
+        assertTrue(list.hasCity(city3));
+        assertEquals(list.getCount(), len-1);
+
+
+        len = list.getCount();
+        list.delete(city3);
+
+        assertFalse(list.hasCity(city1));
+        assertFalse(list.hasCity(city2));
+        assertFalse(list.hasCity(city3));
+        assertEquals(list.getCount(), len-1);
+
     }
 
 }
